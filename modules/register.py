@@ -33,27 +33,6 @@ class Registration:
         self.lockdown = False
         self.greet = None
 
-
-
-    def on_publish(self, uid):
-        _user = self.users.search(uid)
-
-        if pinylib.CONFIG.B_ALLOW_BROADCASTS:
-            if _user is not None:
-                if _user.user_level == 8 or _user.nick in self.cambans:
-                    self.score = 10
-                    self.send_close_user_msg(_user.id)
-                    self.handle_msg('%s is banned from camming up.' % _user.nick)
-                    _user.is_broadcasting = False
-                    self.send_kick_msg(_user.id)
-            _user.is_broadcasting = True
-
-        else:
-            self.send_close_user_msg(_user.id)
-            self.handle_msg('Broadcating is disabled, allowcam to enable.')
-            _user.is_broadcasting = False
-
-
     def user_register(self, _user):
 
         if not _user.account:
@@ -143,14 +122,17 @@ class Registration:
                                            '[User] Not Whitelisted %s:%d:%s' % (_user.nick, _user.id, _user.account))
 
             if self.config.B_VIP and not buddyusr:
-                if self.spamcheck.lockdown:
-                    #self.tinybot.process_ban(_user.id)
-                    sleep(randint(3,6))
+                _user.user_level = 8
+                if _user.is_broadcasting:
+                        self.send_close_msg(_user.id)
+                        _user.is_broadcasting = False
                 else:
-                    sleep(randint(3,6))
-                    #self.tinybot.send_ban_msg(_user.id)
+                    sleep(randint(1,2))
+                    self.tinybot.send_close_user_msg(_user.id)
+
+                    _user.user_level = 8
                     if _user.is_broadcasting:
-                        self.send_close_user_msg(_user.id)
+                        self.send_close_msg(_user.id)
                         _user.is_broadcasting = False
 
                 if self.config.B_VERBOSE:
@@ -160,26 +142,3 @@ class Registration:
                                            '[Security] %s was banned, VIP mode' % _user.nick)
                 return False
         return True
-
-        if cmd == prefix + 'acc':  # !acc add <account> level note/msg  or !acc del <account>
-            self.accountmanager(cmd_arg)
-
-        if cmd == prefix + 'camban':  # dirty 2 minutes hack code /// requested guest camban
-            _user = self.users.search_by_nick(cmd_arg)
-            if _user is None:
-                if cmd_arg in self.cambans:
-                    self.cambans.remove(cmd_arg)
-                    _user.user_level = 7
-                    self.handle_msg('%s is allowed to broadcast again.' % cmd_arg)
-                    return
-                else:
-                    _user.user_level = 8
-                    self.cambans.append(cmd_arg)
-                    if _user.is_broadcasting:
-                        self.send_close_user_msg(_user.id)
-                        _user.is_broadcasting = False
-            else:
-                self.handle_msg('no such user')
-            self.handle_msg('%s is now banned from camming' % cmd_arg)
-
-        self.console_write(pinylib.COLOR['green'], self.active_user.nick + ': ' + cmd + ' ' + cmd_arg)
