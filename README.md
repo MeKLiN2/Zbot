@@ -1,4 +1,68 @@
 
+sudo apt install python2
+sudo apt install pip2
+----------------------------------
+then
+----------------------------------
+pip2 install websocket-client==0.48.0
+pip2 install beautifulsoup4==4.6.1
+
+OR
+-----------------------------------------------
+https://pypi.org/project/websocket-client/0.48.0/#files
+https://pypi.org/project/beautifulsoup4/4.6.1/#files
+-
+https://files.pythonhosted.org/packages/8e/37/84b216b36760d157ea81ad7cba48ba2052abe54c604784e7b04668fcb281/beautifulsoup4-4.6.1.tar.gz
+https://files.pythonhosted.org/packages/28/85/df04ec21c622728316b591c2852fd20a0e74324eeb6ca26f351844ba815f/websocket_client-0.48.0.tar.gz
+
+tar -xf beautifulsoup4-4.6.1.tar.gz
+tar -xf websocket_client-0.48.0.tar.gz
+-----------------------------------------------
+THEN
+---------------------------------------------------------------
+pip install2 requests colorama simplejson`
+
+AND
+
+OPEN YOUR WEB BROWSER, TYPE CTRL + SHIFT + N on CHROME or OPERA, CTRL + SHIFT + P on FIREFOX
+GO TO: tinychat.com/logout
+LOGIN YOUR BOT ACCOUNT
+GO TO THE ROOM WHERE THE BOT WILL BE JOINING
+REFRESH THE CHAT 5 TIMES UNTIL YOU GET THE CAPTCHA, AND CAN SEE THE CAMERAS
+CLOSE THE WEB BROWSER
+
+LS $HOME\bot
+CD ~/bot
+PYTHON2 BOT.PY
+----------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+------------------- original tut ----------------------
+
+
+
+
+
+
+
+
+
 ## BuddyBot
 
 Based off Nortxort's Tinychat Bot and Pinylib.
