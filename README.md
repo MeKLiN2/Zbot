@@ -34,6 +34,9 @@ CLOSE THE WEB BROWSER
 LS $HOME\bot
 CD ~/bot
 PYTHON2 BOT.PY
+
+
+MAKE SURE YOU INSTALL PYTHON 2.7.1(6?) AS IT HAS THE PYTHON PATH AUTOMATICALLY ADDED TO THE DOS PROMPT!
 ----------------------------------------------------------------
 
 
